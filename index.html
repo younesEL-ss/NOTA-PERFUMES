@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="NOTA PERFUMES – Luxury Artisan Fragrances from the Medina of Fes, Morocco."/>
+<meta name="keywords" content="nota perfumes, luxury perfume, moroccan perfume, fes, oud, fragrance"/>
+<title>NOTA PERFUMES | notaperfumes.official</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Raleway:wght@200;300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <span class="loader-nota gold-shimmer">NOTA</span>
+    <span class="loader-perf">PERFUMES</span>
+    <div class="loader-divider"></div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p class="loader-text" id="loaderText">Entering the World of Nota...</p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap">
+    <a class="nav-brand" href="#home" onclick="goto(event,'home')">
+      <span class="brand-main gold-shimmer">NOTA</span>
+      <span class="brand-sub">PERFUMES</span>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a class="nav-item active" href="#home"         onclick="goto(event,'home')"         data-i18n="nav.home">Home</a></li>
+      <li><a class="nav-item"        href="#collections"  onclick="goto(event,'collections')"  data-i18n="nav.collections">Collections</a></li>
+      <li><a class="nav-item"        href="#about"        onclick="goto(event,'about')"         data-i18n="nav.about">About</a></li>
+      <li><a class="nav-item"        href="#why"          onclick="goto(event,'why')"           data-i18n="nav.why">Why Us</a></li>
+      <li><a class="nav-item"        href="#testimonials" onclick="goto(event,'testimonials')"  data-i18n="nav.reviews">Reviews</a></li>
+      <li><a class="nav-item"        href="#contact"      onclick="goto(event,'contact')"       data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-wrap" id="langWrap">
+        <button class="lang-trigger" id="langTrigger">
+          <i class="fa fa-globe"></i><span id="activeLang">EN</span><i class="fa fa-chevron-down fa-xs"></i>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button class="lang-opt" onclick="setLang('en')"><b>EN</b><span>English</span></button>
+          <button class="lang-opt" onclick="setLang('fr')"><b>FR</b><span>Français</span></button>
+          <button class="lang-opt" onclick="setLang('ar')"><b>AR</b><span>العربية</span></button>
+        </div>
+      </div>
+      <button class="nav-icon-btn" id="themeBtn"><i class="fa fa-sun" id="themeIco"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a class="mob-link" data-i18n="nav.home"        href="#" onclick="closeMob();goto(event,'home')">Home</a>
+    <a class="mob-link" data-i18n="nav.collections" href="#" onclick="closeMob();goto(event,'collections')">Collections</a>
+    <a class="mob-link" data-i18n="nav.about"       href="#" onclick="closeMob();goto(event,'about')">About</a>
+    <a class="mob-link" data-i18n="nav.why"         href="#" onclick="closeMob();goto(event,'why')">Why Us</a>
+    <a class="mob-link" data-i18n="nav.reviews"     href="#" onclick="closeMob();goto(event,'testimonials')">Reviews</a>
+    <a class="mob-link" data-i18n="nav.contact"     href="#" onclick="closeMob();goto(event,'contact')">Contact</a>
+    <div class="mob-langs">
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('fr')">FR</button>
+      <button onclick="setLang('ar')">AR</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════ HERO ════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="smoke-wrap" id="smokeWrap"></div>
+
+  <div class="hero-layout">
+    <!-- Text -->
+    <div class="hero-copy">
+      <div class="hero-eyebrow reveal">
+        <span class="eline"></span>
+        <span data-i18n="hero.tagline">The Art of Scent</span>
+        <span class="eline"></span>
+      </div>
+      <h1 class="hero-h1 gold-shimmer reveal-up" data-i18n="hero.title">NOTA</h1>
+      <p class="hero-italic reveal-up" data-i18n="hero.subtitle">PERFUMES</p>
+      <div class="gold-line reveal" style="margin-left:0"></div>
+      <p class="hero-desc reveal-up" data-i18n="hero.desc">
+        Luxury fragrances born in the ancient Medina of Fes, Morocco — where centuries of tradition meet modern elegance.
+      </p>
+      <div class="hero-cta reveal-up">
+        <button class="btn-gold"  onclick="goto(event,'collections')" data-i18n="hero.shop">Shop Now</button>
+        <button class="btn-ghost" onclick="goto(event,'contact')"     data-i18n="hero.contact">Contact Us</button>
+        <a class="btn-wa" href="https://wa.me/212779276395" target="_blank">
+          <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+        </a>
+      </div>
+      <div class="hero-stats reveal-up">
+        <div class="hs"><strong class="gold-shimmer">50+</strong><span data-i18n="stat.scents">Fragrances</span></div>
+        <div class="hsdiv"></div>
+        <div class="hs"><strong class="gold-shimmer">10+</strong><span data-i18n="stat.years">Years</span></div>
+        <div class="hsdiv"></div>
+        <div class="hs"><strong class="gold-shimmer">5K+</strong><span data-i18n="stat.clients">Clients</span></div>
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div class="hero-visual">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+
+      <!-- Main Bottle -->
+      <div class="hv-bottle main-bottle float-a">
+        <svg viewBox="0 0 120 220" xmlns="http://www.w3.org/2000/svg" class="b-svg glow-bottle">
+          <defs>
+            <linearGradient id="bgm" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#d4a017" stop-opacity="0.95"/>
+              <stop offset="50%"  stop-color="#f3d98a" stop-opacity="0.70"/>
+              <stop offset="100%" stop-color="#b8860b" stop-opacity="0.90"/>
+            </linearGradient>
+          </defs>
+          <rect x="50" y="3"  width="20" height="10" rx="3" fill="#d4a017" opacity="0.95"/>
+          <rect x="42" y="11" width="36" height="19" rx="4" fill="url(#bgm)"/>
+          <rect x="46" y="29" width="28" height="22" rx="3" fill="url(#bgm)"/>
+          <path d="M18 58 Q16 80 16 120 Q16 178 60 188 Q104 178 104 120 Q104 80 102 58 Z" fill="url(#bgm)" opacity="0.88"/>
+          <path d="M26 68 Q24 92 24 132" stroke="white" stroke-width="7" stroke-linecap="round" opacity="0.14"/>
+          <rect x="28" y="96" width="64" height="64" rx="7" fill="rgba(8,8,8,0.28)"/>
+          <text x="60" y="121" text-anchor="middle" fill="#d4a017" font-size="7.5" font-family="serif" font-weight="bold" letter-spacing="2.5">NOTA</text>
+          <text x="60" y="133" text-anchor="middle" fill="#d4a017" font-size="5" font-family="serif" opacity="0.80" letter-spacing="1.5">PERFUMES</text>
+          <line x1="36" y1="141" x2="84" y2="141" stroke="#d4a017" stroke-width="0.5" opacity="0.45"/>
+          <text x="60" y="152" text-anchor="middle" fill="#d4a017" font-size="4.5" font-family="serif" opacity="0.65" letter-spacing="1.2">MEDINA · FES</text>
+          <ellipse cx="60" cy="186" rx="36" ry="7" fill="#d4a017" opacity="0.12"/>
+        </svg>
+      </div>
+
+      <!-- Left Bottle -->
+      <div class="hv-bottle left-bottle float-b" style="opacity:.5">
+        <svg viewBox="0 0 120 220" xmlns="http://www.w3.org/2000/svg" class="b-svg">
+          <defs><linearGradient id="bgl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#b8860b" stop-opacity="0.92"/><stop offset="100%" stop-color="#7a5508" stop-opacity="0.80"/></linearGradient></defs>
+          <rect x="50" y="3"  width="20" height="10" rx="3" fill="#b8860b"/>
+          <rect x="42" y="11" width="36" height="19" rx="4" fill="url(#bgl)"/>
+          <rect x="46" y="29" width="28" height="22" rx="3" fill="url(#bgl)"/>
+          <path d="M18 58 Q16 80 16 120 Q16 178 60 188 Q104 178 104 120 Q104 80 102 58 Z" fill="url(#bgl)" opacity="0.85"/>
+          <rect x="28" y="96" width="64" height="64" rx="7" fill="rgba(8,8,8,0.24)"/>
+          <text x="60" y="128" text-anchor="middle" fill="#b8860b" font-size="6.5" font-family="serif" font-weight="bold" letter-spacing="2">NOTA</text>
+        </svg>
+      </div>
+
+      <!-- Right Bottle -->
+      <div class="hv-bottle right-bottle float-c" style="opacity:.4">
+        <svg viewBox="0 0 120 220" xmlns="http://www.w3.org/2000/svg" class="b-svg">
+          <defs><linearGradient id="bgr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f3d98a" stop-opacity="0.90"/><stop offset="100%" stop-color="#d4a017" stop-opacity="0.70"/></linearGradient></defs>
+          <rect x="50" y="3"  width="20" height="10" rx="3" fill="#f3d98a"/>
+          <rect x="42" y="11" width="36" height="19" rx="4" fill="url(#bgr)"/>
+          <rect x="46" y="29" width="28" height="22" rx="3" fill="url(#bgr)"/>
+          <path d="M18 58 Q16 80 16 120 Q16 178 60 188 Q104 178 104 120 Q104 80 102 58 Z" fill="url(#bgr)" opacity="0.82"/>
+          <rect x="28" y="96" width="64" height="64" rx="7" fill="rgba(8,8,8,0.24)"/>
+          <text x="60" y="128" text-anchor="middle" fill="#d4a017" font-size="6.5" font-family="serif" font-weight="bold" letter-spacing="2">NOTA</text>
+        </svg>
+      </div>
+
+      <div class="hv-badge badge-tl glass"><strong class="gold-shimmer">50+</strong><span data-i18n="stat.scents">Scents</span></div>
+      <div class="hv-badge badge-br glass"><strong class="gold-shimmer">Fes</strong><span>Medina</span></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue" onclick="goto(null,'collections')">
+    <span data-i18n="hero.scroll">Scroll</span>
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+  </div>
+</section>
+
+<!-- ════ COLLECTIONS ════════════════════════════ -->
+<section class="section sec-alt" id="collections">
+  <div class="top-line"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">— Collection —</p>
+      <h2 class="sec-title" data-i18n="col.title">Our Collections</h2>
+      <div class="gold-line"></div>
+      <p class="sec-sub" data-i18n="col.sub">Each fragrance tells a unique story of Moroccan artistry</p>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+    <div style="text-align:center;margin-top:1rem">
+      <button class="btn-outline-gold" data-i18n="col.viewAll">View All Fragrances</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT ══════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="top-line"></div><div class="bot-line"></div>
+  <div class="about-orb"></div>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <div class="about-card glass">
+          <div class="ac-pattern"></div>
+          <p class="ac-est">Est. 2014</p>
+          <h3 class="ac-name gold-shimmer">NOTA</h3>
+          <p class="ac-maison">Maison de Parfums</p>
+          <div class="gold-line" style="margin:1rem auto"></div>
+          <p class="ac-quote">"Where every drop tells the story of Morocco"</p>
+          <div class="ac-stats">
+            <div class="ac-stat glass"><i class="fa fa-award gold"></i><span data-i18n="about.stat1">50+ Fragrances</span></div>
+            <div class="ac-stat glass"><i class="fa fa-clock gold"></i><span data-i18n="about.stat2">10 Years</span></div>
+            <div class="ac-stat glass"><i class="fa fa-users gold"></i><span data-i18n="about.stat3">5000+ Clients</span></div>
+            <div class="ac-stat glass"><i class="fa fa-globe gold"></i><span data-i18n="about.stat4">15 Countries</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal-right">
+        <p class="eyebrow">— Notre Histoire —</p>
+        <h2 class="sec-title" data-i18n="about.title">Our Story</h2>
+        <h3 class="about-sub" data-i18n="about.subtitle">Born in the Heart of Fes</h3>
+        <div class="gold-line" style="margin-left:0"></div>
+        <p class="about-p" data-i18n="about.p1">Nota Perfumes was born from a deep love for the ancient art of perfumery — a craft woven into the very soul of Fes Medina, Morocco. In the winding alleys of this UNESCO World Heritage city, our story began.</p>
+        <p class="about-p" data-i18n="about.p2">Every fragrance we create is a tribute to Moroccan heritage — the rose fields of Kelaat MGoun, the oud markets of the ancient souks, the spice-laden air of the tanneries. We source only the finest natural ingredients.</p>
+        <p class="about-p" data-i18n="about.p3">At Nota Perfumes, a true fragrance is not merely a scent — it is an emotion, a memory, a journey. Each bottle is an invitation to explore the rich tapestry of Moroccan culture.</p>
+        <button class="btn-gold" onclick="goto(event,'collections')">Discover Our Fragrances</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY US ══════════════════════════════════ -->
+<section class="section sec-alt" id="why">
+  <div class="top-line"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">— Premium —</p>
+      <h2 class="sec-title" data-i18n="why.title">Why Choose Nota</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="why-grid" id="whyGrid"></div>
+  </div>
+</section>
+
+<!-- ════ TESTIMONIALS ════════════════════════════ -->
+<section class="section" id="testimonials">
+  <div class="top-line"></div><div class="bot-line"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">— Reviews —</p>
+      <h2 class="sec-title" data-i18n="test.title">What Our Clients Say</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="test-grid" id="testGrid"></div>
+  </div>
+</section>
+
+<!-- ════ SOCIAL ══════════════════════════════════ -->
+<section class="section sec-alt" id="social">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">— Connect —</p>
+      <h2 class="sec-title" data-i18n="social.title">Follow Our Journey</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="social-cards">
+      <a href="https://instagram.com/notaperfumes.official" target="_blank" class="soc-card glass">
+        <div class="soc-ico" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)"><i class="fab fa-instagram"></i></div>
+        <strong>@notaperfumes.official</strong><span data-i18n="social.ig">Follow on Instagram</span>
+      </a>
+      <a href="https://facebook.com/notaperfumes" target="_blank" class="soc-card glass">
+        <div class="soc-ico" style="background:#1877F2"><i class="fab fa-facebook"></i></div>
+        <strong>Nota Perfumes</strong><span data-i18n="social.fb">Follow on Facebook</span>
+      </a>
+      <a href="https://wa.me/212779276395" target="_blank" class="soc-card glass">
+        <div class="soc-ico" style="background:#25D366"><i class="fab fa-whatsapp"></i></div>
+        <strong>+212 779 276 395</strong><span data-i18n="social.wa">Chat on WhatsApp</span>
+      </a>
+      <a href="mailto:notaperfumes.official@gmail.com" class="soc-card glass">
+        <div class="soc-ico bg-gg"><i class="fa fa-envelope"></i></div>
+        <strong>notaperfumes.official</strong><span data-i18n="social.em">Send Email</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="top-line"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">— Contact —</p>
+      <h2 class="sec-title" data-i18n="con.title">Find Us</h2>
+      <div class="gold-line"></div>
+      <p class="sec-sub" data-i18n="con.sub">We would love to hear from you</p>
+    </div>
+    <div class="contact-grid">
+      <div class="con-info reveal-left">
+        <div class="con-item glass"><div class="con-ico bg-gg"><i class="fa fa-map-marker-alt"></i></div><span data-i18n="con.addr">Medina, Fes, Morocco</span></div>
+        <div class="con-item glass"><div class="con-ico bg-gg"><i class="fa fa-envelope"></i></div><span>notaperfumes.official@gmail.com</span></div>
+        <div class="con-item glass"><div class="con-ico bg-gg"><i class="fa fa-phone"></i></div><span>+212 779 276 395</span></div>
+        <div class="con-socials">
+          <a href="https://wa.me/212779276395"                      target="_blank" class="csoc cwa"><i class="fab fa-whatsapp"></i><span data-i18n="con.wa">WhatsApp</span></a>
+          <a href="mailto:notaperfumes.official@gmail.com"                          class="csoc cem"><i class="fa fa-envelope"></i><span data-i18n="con.email">Email Us</span></a>
+          <a href="https://facebook.com/notaperfumes"               target="_blank" class="csoc cfb"><i class="fab fa-facebook"></i><span>Facebook</span></a>
+          <a href="https://instagram.com/notaperfumes.official"     target="_blank" class="csoc cig"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+        </div>
+        <div class="map-box">
+          <iframe title="Nota Perfumes" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26588.4!2d-5.0026!3d34.0665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda9ff56be2e9591%3A0x99e83ca2cb13698c!2sMedina%20of%20Fez!5e0!3m2!1sen!2sma!4v1700000000000" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="con-form-wrap reveal-right">
+        <div class="form-card glass">
+          <div id="formOk" class="form-ok hidden">
+            <span class="form-ok-ico">✨</span>
+            <h3 data-i18n="con.sent">Message Sent!</h3>
+            <p data-i18n="con.reply">We'll get back to you soon.</p>
+          </div>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="fg"><input class="fi" type="text"  name="name"    required data-i18n-ph="con.name"    placeholder="Your Name"/><span class="ferr"></span></div>
+              <div class="fg"><input class="fi" type="email" name="email"   required data-i18n-ph="con.emailph" placeholder="Your Email"/><span class="ferr"></span></div>
+            </div>
+            <div class="fg"><input class="fi" type="text" name="subject" data-i18n-ph="con.subject" placeholder="Subject"/></div>
+            <div class="fg"><textarea class="fi fta" name="message" rows="5" required data-i18n-ph="con.msg" placeholder="Your Message"></textarea><span class="ferr"></span></div>
+            <button type="submit" class="btn-gold btn-full" id="submitBtn">
+              <i class="fa fa-paper-plane"></i><span data-i18n="con.send">Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ══════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-glow"></div>
+  <div class="top-line"></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="ft-brand">
+        <div class="ft-logo"><span class="gold-shimmer">NOTA</span><small>PERFUMES</small></div>
+        <div class="gold-line" style="margin-left:0;width:40px;margin-bottom:1rem"></div>
+        <p class="ft-slogan" data-i18n="ft.slogan">The Art of Moroccan Perfumery</p>
+        <div class="ft-socials">
+          <a href="https://wa.me/212779276395"                  target="_blank" class="ft-soc" style="color:#25D366"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://facebook.com/notaperfumes"           target="_blank" class="ft-soc" style="color:#1877F2"><i class="fab fa-facebook"></i></a>
+          <a href="https://instagram.com/notaperfumes.official" target="_blank" class="ft-soc" style="color:#E1306C"><i class="fab fa-instagram"></i></a>
+          <a href="mailto:notaperfumes.official@gmail.com"                       class="ft-soc" style="color:#d4a017"><i class="fa fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4 class="ft-head" data-i18n="ft.links">Quick Links</h4>
+        <ul class="ft-list">
+          <li><a href="#" data-i18n="nav.home"        onclick="goto(event,'home')">Home</a></li>
+          <li><a href="#" data-i18n="nav.collections" onclick="goto(event,'collections')">Collections</a></li>
+          <li><a href="#" data-i18n="nav.about"       onclick="goto(event,'about')">About</a></li>
+          <li><a href="#" data-i18n="nav.why"         onclick="goto(event,'why')">Why Us</a></li>
+          <li><a href="#" data-i18n="nav.contact"     onclick="goto(event,'contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4 class="ft-head">Contact</h4>
+        <ul class="ft-list plain">
+          <li data-i18n="con.addr">Medina, Fes, Morocco</li>
+          <li>notaperfumes.official@gmail.com</li>
+          <li>+212 779 276 395</li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4 class="ft-head" data-i18n="ft.news">Newsletter</h4>
+        <div id="newsOk" class="news-ok hidden" data-i18n="ft.subscribed">✨ Subscribed!</div>
+        <form class="ft-form" id="newsForm">
+          <input type="email" class="ft-inp" placeholder="Your email" required/>
+          <button type="submit" class="ft-btn" data-i18n="ft.sub">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="ft.copy">© 2026 Nota Perfumes. All rights reserved.</p>
+      <p data-i18n="ft.made">Crafted with love in Fes, Morocco</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floats" id="floats">
+  <a href="https://wa.me/212779276395"                  target="_blank" class="fl-btn" style="background:#25D366"                                       title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://facebook.com/notaperfumes"           target="_blank" class="fl-btn" style="background:#1877F2"                                       title="Facebook"><i class="fab fa-facebook"></i></a>
+  <a href="https://instagram.com/notaperfumes.official" target="_blank" class="fl-btn" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)" title="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+<button class="back-top hidden" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa fa-arrow-up"></i>
+</button>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
