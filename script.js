@@ -5,7 +5,36 @@
 
 let lang = 'en';
 
-const WA_NUMBER = '212779276395'; // WhatsApp number (no + sign)
+const WA_NUMBER = '212779276395';
+
+/* ══ CURSOR — only active on real pointer devices ══════════
+   Disabled on touch / mobile to avoid lag or ghost elements
+══════════════════════════════════════════════════════════ */
+const isTouchDevice = () =>
+  window.matchMedia('(hover: none)').matches ||
+  window.matchMedia('(pointer: coarse)').matches;
+
+const dot  = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+
+if (!isTouchDevice()) {
+  document.addEventListener('mousemove', e => {
+    dot.style.left  = e.clientX + 'px';
+    dot.style.top   = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    }, 85);
+  });
+  document.addEventListener('mousedown', () => {
+    dot.style.width  = '16px';
+    dot.style.height = '16px';
+  });
+  document.addEventListener('mouseup', () => {
+    dot.style.width  = '9px';
+    dot.style.height = '9px';
+  });
+}
 
 /* ══ LOADER ════════════════════════════════════════════════ */
 window.addEventListener('load', () => {
@@ -17,26 +46,6 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loader').classList.add('hide');
   }, 2700);
-});
-
-/* ══ CURSOR ════════════════════════════════════════════════ */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-document.addEventListener('mousemove', e => {
-  dot.style.left  = e.clientX + 'px';
-  dot.style.top   = e.clientY + 'px';
-  setTimeout(() => {
-    ring.style.left = e.clientX + 'px';
-    ring.style.top  = e.clientY + 'px';
-  }, 85);
-});
-document.addEventListener('mousedown', () => {
-  dot.style.width  = '16px';
-  dot.style.height = '16px';
-});
-document.addEventListener('mouseup', () => {
-  dot.style.width  = '9px';
-  dot.style.height = '9px';
 });
 
 /* ══ SMOOTH SCROLL ═════════════════════════════════════════ */
@@ -65,7 +74,7 @@ window.addEventListener('scroll', () => {
       });
     }
   });
-});
+}, { passive: true });
 
 /* ══ HAMBURGER ═════════════════════════════════════════════ */
 const hamburger  = document.getElementById('hamburger');
@@ -128,8 +137,9 @@ document.getElementById('themeBtn').addEventListener('click', () => {
   document.getElementById('themeIco').className = dark ? 'fa fa-sun' : 'fa fa-moon';
 });
 
-/* ══ SMOKE PARTICLES ═══════════════════════════════════════ */
+/* ══ SMOKE PARTICLES — skip on mobile for performance ══════ */
 function createSmoke() {
+  if (isTouchDevice()) return;
   const wrap = document.getElementById('smokeWrap');
   for (let i = 0; i < 14; i++) {
     const p  = document.createElement('div');
@@ -188,7 +198,7 @@ function renderProducts() {
         <div class="pc-foot">
           <span class="pc-price">${p.price}</span>
           <div class="pc-acts">
-            <button class="pc-ico" title="${t['products.view']||'View'}" onclick="viewProduct('${p.name.replace(/'/g,"\\'")}','${p.price}')"><i class="fa fa-eye"></i></button>
+            <button class="pc-ico" title="${t['products.view']||'Enquire'}" onclick="viewProduct('${p.name.replace(/'/g,"\\'")}','${p.price}')"><i class="fa fa-eye"></i></button>
             <button class="pc-cart" onclick="orderOnWhatsApp('${p.name.replace(/'/g,"\\'")}','${p.price}',this)">
               <i class="fab fa-whatsapp"></i>${t['products.add']||'Order Now'}
             </button>
@@ -200,17 +210,12 @@ function renderProducts() {
   setTimeout(initReveal, 50);
 }
 
-/* ══ WHATSAPP ORDER ═════════════════════════════════════════
-   Builds a pre-filled WhatsApp message with product details
-   and opens it in a new tab.
-══════════════════════════════════════════════════════════ */
+/* ══ WHATSAPP ORDER ════════════════════════════════════════ */
 function orderOnWhatsApp(productName, price, btn) {
-  // Brief visual feedback before redirect
   const origHTML = btn.innerHTML;
   btn.innerHTML = '<i class="fa fa-check"></i> Redirecting...';
   btn.style.opacity = '0.8';
 
-  // Build localized greeting based on current language
   const greetings = {
     en: `Hello! I'd like to order the following from Nota Perfumes:\n\n🌹 *${productName}*\n💰 Price: ${price}\n\nPlease let me know the payment and delivery details. Thank you!`,
     fr: `Bonjour ! Je souhaite commander chez Nota Perfumes :\n\n🌹 *${productName}*\n💰 Prix : ${price}\n\nMerci de m'indiquer les modalités de paiement et de livraison.`,
@@ -218,12 +223,10 @@ function orderOnWhatsApp(productName, price, btn) {
   };
 
   const message = greetings[lang] || greetings.en;
-  const encodedMsg = encodeURIComponent(message);
-  const waURL = `https://wa.me/${WA_NUMBER}?text=${encodedMsg}`;
+  const waURL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 
   setTimeout(() => {
     window.open(waURL, '_blank');
-    // Restore button after redirect
     setTimeout(() => {
       btn.innerHTML = origHTML;
       btn.style.opacity = '';
@@ -231,19 +234,14 @@ function orderOnWhatsApp(productName, price, btn) {
   }, 400);
 }
 
-/* ══ VIEW PRODUCT (eye icon) ════════════════════════════════
-   Also redirects to WhatsApp for enquiry
-══════════════════════════════════════════════════════════ */
 function viewProduct(productName, price) {
   const greetings = {
     en: `Hello! I'd like more information about:\n\n🌹 *${productName}*\n💰 Price: ${price}\n\nCould you tell me more about this fragrance?`,
     fr: `Bonjour ! J'aimerais plus d'informations sur :\n\n🌹 *${productName}*\n💰 Prix : ${price}\n\nPouvez-vous m'en dire plus sur cette fragrance ?`,
     ar: `مرحباً! أود الاستفسار عن:\n\n🌹 *${productName}*\n💰 السعر: ${price}\n\nهل يمكنك إخباري المزيد عن هذا العطر؟`
   };
-
   const message = greetings[lang] || greetings.en;
-  const encodedMsg = encodeURIComponent(message);
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodedMsg}`, '_blank');
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 /* ══ RENDER WHY ════════════════════════════════════════════ */
@@ -290,7 +288,7 @@ function initReveal() {
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   els.forEach(el => {
     if (!el.classList.contains('visible')) obs.observe(el);
   });
@@ -307,11 +305,11 @@ document.getElementById('contactForm').addEventListener('submit', e => {
     const err = inp.parentElement.querySelector('.ferr');
     if (!inp.value.trim()) {
       inp.classList.add('err');
-      if (err) err.textContent = '⚠ This field is required';
+      if (err) err.textContent = 'This field is required';
       valid = false;
     } else if (inp.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value)) {
       inp.classList.add('err');
-      if (err) err.textContent = '⚠ Please enter a valid email';
+      if (err) err.textContent = 'Please enter a valid email';
       valid = false;
     } else {
       inp.classList.remove('err');
